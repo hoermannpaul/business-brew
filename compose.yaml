@@ -1,0 +1,19 @@
+services:
+  catalog:
+    build: .
+    command:
+      - serve
+      - --organization
+      - ${BUSINESS_BREW_ORGANIZATION:?Set BUSINESS_BREW_ORGANIZATION in .env}
+      - --database
+      - /data/business-brew.db
+      - --listen
+      - 0.0.0.0:8080
+    env_file: .env
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - catalog-data:/data
+    restart: unless-stopped
+volumes:
+  catalog-data:

@@ -1,0 +1,23 @@
+name: Docker integration tests
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run isolated container suite
+        run: bash scripts/test-integration.sh
+      - name: Save test results and container logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-results
+          path: test-results/integration
+          if-no-files-found: ignore

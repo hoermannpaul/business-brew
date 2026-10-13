@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "service_url": "https://tools.company.example",
+  "organization": "acme",
+  "developer": "alice",
+  "projects": [
+    "billing"
+  ],
+  "credential_env": "BUSINESS_BREW_TOKEN",
+  "installers": {
+    "darwin": [
+      "brew"
+    ],
+    "windows": [
+      "winget"
+    ],
+    "linux": [
+      "brew",
+      "apt",
+      "dnf"
+    ]
+  },
+  "native_binaries": {
+    "brew": "/opt/homebrew/bin/brew"
+  },
+  "repositories": [
+    {
+      "root": "/Users/alice/Development/billing",
+      "project": "billing"
+    }
+  ]
+}

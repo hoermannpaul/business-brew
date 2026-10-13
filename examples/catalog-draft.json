@@ -1,0 +1,71 @@
+{
+  "version": 0,
+  "request_scope": "project",
+  "default_connector": "software-requests",
+  "connectors": [
+    {
+      "id": "software-requests",
+      "kind": "github",
+      "base_url": "https://api.github.com",
+      "token_env": "SOFTWARE_REQUESTS_TOKEN",
+      "settings": {
+        "repository": "your-company/software-requests"
+      },
+      "status_mapping": {
+        "open": "pending",
+        "closed": "unknown"
+      }
+    }
+  ],
+  "targets": [
+    {
+      "id": "node-mac-arm",
+      "tool": "node",
+      "version": "22.14.0",
+      "os": "darwin",
+      "arch": "arm64",
+      "installer": "brew",
+      "package": "node@22",
+      "source": "homebrew/core",
+      "grants": [
+        {
+          "organization": "acme",
+          "project": "billing"
+        }
+      ]
+    },
+    {
+      "id": "node-windows-x64",
+      "tool": "node",
+      "version": "22.14.0",
+      "os": "windows",
+      "arch": "amd64",
+      "installer": "winget",
+      "package": "OpenJS.NodeJS.LTS",
+      "source": "winget",
+      "grants": [
+        {
+          "organization": "acme",
+          "project": "billing"
+        }
+      ]
+    },
+    {
+      "id": "node-linux-brew-x64",
+      "tool": "node",
+      "version": "22.14.0",
+      "os": "linux",
+      "arch": "amd64",
+      "installer": "brew",
+      "package": "node@22",
+      "source": "homebrew/core",
+      "grants": [
+        {
+          "organization": "acme",
+          "project": "billing"
+        }
+      ]
+    }
+  ],
+  "outside_project_request_scope": "developer"
+}

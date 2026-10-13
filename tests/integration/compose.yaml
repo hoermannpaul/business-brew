@@ -1,0 +1,31 @@
+services:
+  bootstrap:
+    image: ${COMPOSE_PROJECT_NAME}-server
+    command: [bootstrap, --organization, integration-test, --database, /data/catalog.db, --username, integration-admin]
+    volumes:
+      - test-data:/data
+
+  server:
+    image: ${COMPOSE_PROJECT_NAME}-server
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    command: [serve, --organization, integration-test, --database, /data/catalog.db, --listen, "127.0.0.1:8080", --allow-insecure-http]
+    volumes:
+      - test-data:/data
+
+  browser:
+    image: ${COMPOSE_PROJECT_NAME}-browser
+    build:
+      context: ../..
+      dockerfile: tests/integration/Dockerfile
+    network_mode: service:server
+    depends_on:
+      - server
+    init: true
+    shm_size: 1gb
+    volumes:
+      - ${INTEGRATION_ARTIFACTS_DIR:?Set the integration artifact directory}:/tests/test-results
+
+volumes:
+  test-data:

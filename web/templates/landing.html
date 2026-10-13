@@ -1,0 +1,92 @@
+{{define "landing"}}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Business Brew brings a company-approved software catalog to the package managers developers already use. Self-hosted, with explicit permissions and your existing request system.">
+  <meta name="theme-color" content="#f7f6ef">
+  <title>Business Brew · Your tools, in good company.</title>
+  <link rel="icon" href="{{.BasePath}}static/brew-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{.BasePath}}static/landing.css">
+  <script src="{{.BasePath}}static/landing.js" defer></script>
+</head>
+<body data-management-url="{{.ManagementURL}}" data-management-label="{{.ManagementLabel}}">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="{{.BasePath}}" aria-label="Business Brew home"><img src="{{.BasePath}}static/brew-mark.svg" width="34" height="34" alt=""><span>business<span class="brand-light">brew</span><span class="brand-period">.</span></span></a>
+    <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#integrations">Integrations</a><a class="nav-admin" href="{{.ManagementURL}}">{{.NavLabel}} <span aria-hidden="true">↗</span></a></nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title-dev">
+      <div class="audience-picker" role="tablist" aria-label="Choose your perspective">
+        <button id="tab-dev" role="tab" aria-selected="true" aria-controls="panel-dev" data-perspective="dev"><span aria-hidden="true">⌘</span> For developers</button>
+        <button id="tab-management" role="tab" aria-selected="false" aria-controls="panel-management" tabindex="-1" data-perspective="management"><span aria-hidden="true">◈</span> For management &amp; IT</button>
+      </div>
+      <p id="perspective-status" class="sr-only" role="status"></p>
+
+      <div id="panel-dev" class="hero-panel" role="tabpanel" aria-labelledby="tab-dev" tabindex="0">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> YOUR WORKFLOW, IN GOOD COMPANY</p>
+          <h1 id="hero-title-dev">Keep your tools.<br>Keep your <em>flow.</em></h1>
+          <p class="hero-description">The commands you know. The software your company approves. Business Brew brings them together, so you can get back to building.</p>
+          <div class="hero-actions"><a class="button primary" href="#get-started">See the developer setup <span aria-hidden="true">↗</span></a><a class="text-link" href="#how-it-works">Take a closer look <span aria-hidden="true">↓</span></a></div>
+          <p class="hero-footnote"><span aria-hidden="true">✓</span> Familiar package managers <span class="footnote-divider">/</span> Self-hosted by your company</p>
+        </div>
+        <div class="demo-area">
+          <div class="demo-label"><span class="mono">01 / THE DEVELOPER EXPERIENCE</span><span class="demo-badge">Illustrative demo</span></div>
+          <div class="terminal">
+            <div class="terminal-bar"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>developer@workspace ~</span><span class="terminal-shell">zsh</span></div>
+            <div class="terminal-body" id="terminal-output" aria-hidden="true"><div class="terminal-line terminal-comment"># Your usual command. A little more connected.</div><div class="terminal-line"><span class="prompt">❯ </span>brew install node@22</div><div class="terminal-line terminal-warning">Business Brew: node 22.14.0 needs approval;</div><div class="terminal-line terminal-muted">request demo-42 [pending] https://tickets.example/42</div><div class="terminal-line terminal-muted">Installation stopped. Rerun after approval.</div></div>
+            <p class="sr-only">Demo: run brew install node@22. An unapproved package creates a request and installation stops. IT reviews the request and publishes a catalog grant. The developer reruns the command and the native installer installs the approved package.</p>
+            <div class="terminal-footer"><span><span class="terminal-dot" aria-hidden="true"></span><span id="terminal-stage">Checking the company catalog</span></span><div class="demo-controls"><button id="demo-pause" type="button" aria-label="Pause terminal animation">Pause <span aria-hidden="true">Ⅱ</span></button><button id="demo-replay" type="button" aria-label="Replay terminal animation">Replay <span aria-hidden="true">↻</span></button></div></div>
+          </div>
+          <div class="demo-annotation"><span class="annotation-icon" aria-hidden="true">↳</span><p><strong>Same command. Shared understanding.</strong><br>Requests go to your company’s configured ticket system.</p></div>
+        </div>
+      </div>
+
+      <div id="panel-management" class="hero-panel" role="tabpanel" aria-labelledby="tab-management" tabindex="0" hidden>
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> A SHARED CATALOG. A CLEAR WAY FORWARD.</p>
+          <h1 id="hero-title-management">A little structure.<br>A lot of <em>freedom.</em></h1>
+          <p class="hero-description">Publish an approved software catalog. Choose who can install what. Let developers keep the package managers they already know.</p>
+          <div class="hero-actions"><a class="button primary" href="{{.ManagementURL}}">{{.ManagementLabel}} <span aria-hidden="true">↗</span></a><a class="text-link" href="#get-started">Explore the rollout <span aria-hidden="true">↓</span></a></div>
+          <p class="hero-footnote"><span aria-hidden="true">✓</span> Explicit permissions <span class="footnote-divider">/</span> Your infrastructure</p>
+        </div>
+        <div class="demo-area">
+          <div class="demo-label"><span class="mono">02 / THE MANAGEMENT EXPERIENCE</span><span class="demo-badge">Illustrative demo</span></div>
+          <div class="catalog-preview">
+            <div class="catalog-top"><span class="catalog-symbol" aria-hidden="true">◈</span><span>Company catalog</span><span class="catalog-state">Published · rev 12</span></div>
+            <div class="catalog-heading"><div><p class="eyebrow">APPROVED SOFTWARE</p><h2>Good tools. Clear permissions.</h2></div><span class="catalog-count">3 sample tools</span></div>
+            <div class="sample-table-wrap"><table class="sample-table"><caption class="sr-only">Illustrative approved software catalog</caption><thead><tr><th>Software / version</th><th>Source</th><th>Who can install</th></tr></thead><tbody><tr><td><span class="tool-icon" aria-hidden="true">N</span><strong>Node.js<small>22.14.0 · macOS</small></strong></td><td>homebrew/core</td><td><span class="grant">Organization</span></td></tr><tr><td><span class="tool-icon" aria-hidden="true">G</span><strong>Git<small>2.49.0 · Linux</small></strong></td><td>fedora</td><td><span class="grant">Project: billing</span></td></tr><tr><td><span class="tool-icon" aria-hidden="true">V</span><strong>VS Code<small>1.98.0 · Windows</small></strong></td><td>winget</td><td><span class="grant">Developer: alex</span></td></tr></tbody></table></div>
+            <div class="catalog-bottom"><span><span class="status-dot" aria-hidden="true"></span> Draft changes stay private until published.</span><span class="catalog-publish">Review → Publish</span></div>
+          </div>
+          <div class="demo-annotation"><span class="annotation-icon" aria-hidden="true">↳</span><p><strong>You publish. Developers take it from there.</strong><br>After approval is published, they rerun their install command.</p></div>
+        </div>
+      </div>
+
+      <div class="package-managers"><p>Built around the tools<br><strong>already in your workflow.</strong></p><div class="manager-names" aria-label="Supported package managers"><span><b aria-hidden="true">♨</b> homebrew</span><span><b aria-hidden="true">▦</b> winget</span><span><b aria-hidden="true">$</b> apt / apt-get</span><span><b aria-hidden="true">⌁</b> dnf</span></div><span class="platform-note">macOS · Windows · Linux</span></div>
+    </section>
+
+    <section class="benefits wrap" aria-labelledby="benefits-title">
+      <div class="section-heading"><p class="eyebrow">LESS FRICTION. MORE BUILDING.</p><h2 id="benefits-title" data-copy="benefitsTitle">Fits your workflow.<br>Connects your team.</h2><p data-copy="benefitsIntro">A small wrapper around your installers. A shared source of truth for everyone.</p></div>
+      <div class="benefit-grid">
+        <article><span class="feature-icon" aria-hidden="true">&gt;_</span><h3 data-copy="feature1Title">Your terminal stays yours.</h3><p data-copy="feature1Body">Use brew, winget, apt, or dnf as usual. Company provisioning puts Business Brew in place, with no project file required for native commands.</p><span class="feature-detail" data-copy="feature1Detail">FAMILIAR COMMANDS, CONNECTED</span></article>
+        <article><span class="feature-icon" aria-hidden="true">◎</span><h3 data-copy="feature2Title">Know where you stand.</h3><p data-copy="feature2Body">Approved packages use the real installer. Blocked packages create or reuse a request, with a tracking link so you can follow along.</p><span class="feature-detail" data-copy="feature2Detail">CLEAR REQUESTS, LESS GUESSWORK</span></article>
+        <article><span class="feature-icon" aria-hidden="true">↗</span><h3 data-copy="feature3Title">The right version. Really.</h3><p data-copy="feature3Body">Package, version, source, and architecture are checked against the published catalog. The native installation is then verified.</p><span class="feature-detail" data-copy="feature3Detail">EXACT TOOLS, EXPLICIT APPROVAL</span></article>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="workflow" aria-labelledby="workflow-title"><div class="wrap">
+      <div class="workflow-heading"><div><p class="eyebrow">FROM “I NEED THIS” TO “LET’S BUILD”</p><h2 id="workflow-title" data-copy="workflowTitle">One workflow.<br>Everyone on the same page.</h2></div><p data-copy="workflowIntro">Approvals belong to your company. Installs stay in the developer’s hands.</p></div>
+      <div class="workflow-steps"><article><span class="step-number">01 <span aria-hidden="true">────────</span></span><h3 data-copy="step1Title">Run your command.</h3><p data-copy="step1Body">Business Brew checks the resolved package against your company’s published catalog. Approved and available? The native installer takes over.</p></article><article><span class="step-number">02 <span aria-hidden="true">────────</span></span><h3 data-copy="step2Title">Get a clear next step.</h3><p data-copy="step2Body">Need approval or a package that isn’t available? A request is created or reused in your configured ticket system. Follow its tracking link.</p></article><article><span class="step-number">03 <span aria-hidden="true">✓</span></span><h3 data-copy="step3Title">Rerun. Get back to work.</h3><p data-copy="step3Body">Once IT publishes the grant and the package is available, rerun the same command. Business Brew checks again before installation.</p></article></div>
+      <p class="workflow-note"><span aria-hidden="true">↳</span> Ticket approval and catalog publication are separate steps. Installation is always developer initiated.</p>
+    </div></section>
+
+    <section id="integrations" class="integrations wrap" aria-labelledby="integrations-title"><div><p class="eyebrow">A PLACE IN YOUR EXISTING STACK</p><h2 id="integrations-title">Keep your request system, too.</h2><p>Connect your company’s workflow through configurable request connectors.</p></div><ul aria-label="Request connector presets"><li>Jira Service Management</li><li>ServiceNow</li><li>Azure DevOps</li><li>GitHub</li><li>Linear</li><li class="custom-integration">Custom HTTP <span aria-hidden="true">↗</span></li></ul></section>
+
+    <section id="get-started" class="setup wrap" aria-labelledby="setup-title"><div class="setup-inner"><div><p class="eyebrow">A BETTER WAY TO BREW</p><h2 id="setup-title" data-copy="setupTitle">Good tools.<br>In good company.</h2><p data-copy="setupIntro">Business Brew is provisioned by your IT team. Once your company-managed profile and installer shims are in place, use your normal commands.</p><a id="setup-cta" class="button primary" href="#how-it-works"><span data-copy="setupCTA">Revisit the workflow</span> <span aria-hidden="true">↗</span></a></div><div class="setup-guide" data-setup="dev"><span class="mono">YOUR FIRST STEPS</span><ol><li><strong>Check with your IT team.</strong><span>They provision your developer credential, managed profile, and installer shims.</span></li><li><strong>Open your usual terminal.</strong><span>Run a supported native command, such as <code>brew install node@22</code>.</span></li><li><strong>Install, or follow the request.</strong><span>If blocked, use the tracking link and rerun after approval is published.</span></li></ol></div><div class="setup-guide" data-setup="management" hidden><span class="mono">YOUR ROLLOUT, AT A GLANCE</span><ol><li><strong>Host the service.</strong><span>Run the Go service on your infrastructure and bootstrap your first local administrator.</span></li><li><strong>Configure and publish.</strong><span>Add exact software targets and grants, connect your request system, then publish the catalog.</span></li><li><strong>Provision your developers.</strong><span>Issue credentials and distribute protected profiles and installer shims through company provisioning.</span></li></ol></div></div></section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand" href="{{.BasePath}}" aria-label="Business Brew home"><img src="{{.BasePath}}static/brew-mark.svg" width="28" height="28" alt=""><span>business<span class="brand-light">brew</span><span class="brand-period">.</span></span></a><p>Developer freedom. Company clarity.</p><span>Self-hosted. Thoughtfully connected.</span><a href="{{.ManagementURL}}">{{.FooterLabel}} <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>{{end}}

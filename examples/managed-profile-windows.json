@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "service_url": "https://tools.company.example",
+  "organization": "acme",
+  "developer": "alice",
+  "projects": [
+    "billing"
+  ],
+  "credential_env": "BUSINESS_BREW_TOKEN",
+  "installers": {
+    "darwin": [
+      "brew"
+    ],
+    "windows": [
+      "winget"
+    ],
+    "linux": [
+      "brew",
+      "apt",
+      "dnf"
+    ]
+  },
+  "native_binaries": {
+    "winget": "C:\\Program Files\\WindowsApps\\REPLACE_WITH_INSTALLED_APP_INSTALLER_PACKAGE\\winget.exe"
+  },
+  "repositories": [
+    {
+      "root": "C:\\Users\\alice\\Development\\billing",
+      "project": "billing"
+    }
+  ]
+}

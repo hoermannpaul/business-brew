@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "service_url": "https://tools.company.example",
+  "organization": "acme",
+  "developer": "alice",
+  "projects": [
+    "billing"
+  ],
+  "installers": {
+    "darwin": [
+      "brew"
+    ],
+    "windows": [
+      "winget"
+    ],
+    "linux": [
+      "brew",
+      "apt",
+      "dnf"
+    ]
+  },
+  "native_binaries": {
+    "brew": "/home/linuxbrew/.linuxbrew/bin/brew",
+    "apt": "/usr/bin/apt",
+    "apt-get": "/usr/bin/apt-get",
+    "apt-cache": "/usr/bin/apt-cache",
+    "dpkg-query": "/usr/bin/dpkg-query",
+    "dnf": "/usr/bin/dnf",
+    "rpm": "/usr/bin/rpm"
+  },
+  "repositories": [
+    {
+      "root": "/home/alice/Development/billing",
+      "project": "billing"
+    }
+  ],
+  "credential_file": "/etc/business-brew/credentials/alice.token"
+}
